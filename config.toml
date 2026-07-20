@@ -29,12 +29,8 @@ theme = "noop"
   taxonomy = ["HTML"]
   page = ["HTML"]
 
-[permalinks]
-  issues = "/issues/:filename/"
-
 [services]
   [services.rss]
     limit = 26
 
-# Tell Hugo to use Hugo's i18n with default English
 disableKinds = ["taxonomy", "term"]

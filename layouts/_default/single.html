@@ -1,12 +1,4 @@
 {{ define "main" }}
-{{ $isIssue := eq .Section "issues" }}
-{{ if not $isIssue }}
-  {{/* Default single-page behaviour */}}
-  <article class="up-container" style="padding: 80px 0;">
-    <h1>{{ .Title }}</h1>
-    {{ .Content }}
-  </article>
-{{ else }}
 <header class="Up-Masthead-Row up-container">
   <div>
     <h1 class="Up-Masthead-Title">Useless Press</h1>
@@ -25,41 +17,11 @@
       <p class="Up-Kicker">Issue {{ .Params.issue }} · {{ .Date.Format "Jan 2" }}</p>
       <h1 style="font-size: clamp(40px, 6vw, 80px); margin-bottom: 16px;">{{ .Title }}</h1>
       <p class="Up-Deck">{{ .Params.tagline }}</p>
-      {{ with .Content }}
-        <div style="margin-top: 32px; font-size: 19px; line-height: 1.6;">
-          {{ . }}
-        </div>
-      {{ end }}
+      <div style="margin-top: 32px; font-size: 19px; line-height: 1.6;">
+        {{ .Content }}
+      </div>
     </div>
   </div>
 </section>
 
-<article class="up-container">
-
-  {{/* Features first */}}
-  {{ $features := where .Pages ".File.BaseFileName" "like" "feature-*" }}
-  {{ if $features }}
-    {{ range $features }}
-      {{ partial "feature.html" (dict "Page" . "Number" .File.BaseFileName) }}
-    {{ end }}
-  {{ end }}
-
-  {{/* Roundups */}}
-  {{ $roundups := where .Pages ".File.BaseFileName" "like" "roundup-*" }}
-  {{ if $roundups }}
-    {{ range $roundups }}
-      {{ partial "roundup-detail.html" . }}
-    {{ end }}
-  {{ end }}
-
-  {{/* Followups */}}
-  {{ $followups := where .Pages ".File.BaseFileName" "like" "followup-*" }}
-  {{ if $followups }}
-    {{ range $followups }}
-      {{ partial "followup.html" . }}
-    {{ end }}
-  {{ end }}
-
-</article>
-{{ end }}
 {{ end }}
