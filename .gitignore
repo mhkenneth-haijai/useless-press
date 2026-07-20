@@ -1,0 +1,12 @@
+# Hugo build outputs
+/public/
+/resources/_gen/
+
+# OS / editor cruft
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local-only
+*.local

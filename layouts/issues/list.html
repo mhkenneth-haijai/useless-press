@@ -1,0 +1,26 @@
+{{ define "main" }}
+<header class="Up-Masthead-Row up-container">
+  <div>
+    <h1 class="Up-Masthead-Title">All Issues</h1>
+    <p class="Up-Masthead-Tagline">A complete archive of Useless Press.</p>
+  </div>
+  <div class="Up-Issue-Meta">
+    <a href="{{ .Site.BaseURL }}" style="color: var(--accent);">← Home</a>
+  </div>
+</header>
+
+<section style="padding: 80px 0;">
+  <div class="up-container">
+    <div class="Up-Roundup-Grid">
+      {{ range .Pages.ByDate.Reverse }}
+        <a href="{{ .Permalink }}" class="Up-Roundup-Card" style="text-decoration: none; color: inherit; border-bottom: 0;">
+          <div class="Up-Roundup-Card-Kicker">Issue {{ .Params.issue }}</div>
+          <h3 class="Up-Roundup-Card-Title">{{ .Title }}</h3>
+          <p class="Up-Roundup-Card-Deck">{{ .Params.tagline }}</p>
+          <p class="Up-Caption">{{ .Date.Format "January 2, 2006" }}</p>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

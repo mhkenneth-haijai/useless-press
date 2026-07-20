@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.subtitle }}{{ end }}">
+  <link rel="stylesheet" href="/css/magazine.css">
+  <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}index.xml">
+  <link rel="canonical" href="{{ .Permalink }}">
+</head>
+<body>
+  {{ block "main" . }}{{ end }}
+
+  <footer class="Up-Colophon">
+    <div class="up-container Up-Colophon-Grid">
+      <div>
+        <strong>{{ .Site.Title }}</strong><br>
+        {{ .Site.Params.subtitle }}
+      </div>
+      <div>
+        Cadence<br>
+        {{ .Site.Params.cadence }}
+      </div>
+      <div>
+        Editor: {{ .Site.Params.author }}<br>
+        <a href="{{ .Site.BaseURL }}index.xml">RSS</a> · <a href="https://github.com/{{ .Site.Params.repo | default `mhkenneth-haijai/useless-press` }}">Source</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

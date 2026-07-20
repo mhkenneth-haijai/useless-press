@@ -1,0 +1,9 @@
+<section style="padding: 64px 0; border-top: 1px solid var(--subtle);">
+  <div class="up-container">
+    <h3 style="font-family: var(--font-display); font-weight: 900; font-size: 28px; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 24px;">
+      {{ .Title }}
+    </h3>
+    {{ with .Params.deck }}<p style="color: var(--mid); font-style: italic; margin-bottom: 32px;">{{ . }}</p>{{ end }}
+    {{ .Content }}
+  </div>
+</section>

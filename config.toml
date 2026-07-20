@@ -1,0 +1,41 @@
+baseURL = "https://mhkenneth-haijai.github.io/useless-press/"
+title = "Useless Press"
+description = "A periodical for the curious and the uncommitted."
+languageCode = "en-us"
+defaultContentLanguage = "en"
+
+# Theme: use the Go-builtin (no theme dependency)
+theme = ""
+
+# Enable unsafe HTML so our inline styles + raw TOC markup pass through
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+  [markup.highlight]
+    noClasses = false
+
+[params]
+  author = "Haijai"
+  subtitle = "A periodical for the curious and the uncommitted."
+  issuesPerYear = "~26"
+  cadence = "Twice weekly — Monday & Friday"
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+  taxonomy = ["HTML"]
+  page = ["HTML"]
+
+[permalinks]
+  issues = "/:year/:month/:day/:slug/"
+
+[services]
+  [services.rss]
+    limit = 26
+
+# Tell Hugo to use Hugo's i18n with default English
+disableKinds = ["taxonomy", "term"]

@@ -1,0 +1,28 @@
+{{ $p := .Page }}
+{{ $num := .Number }}
+
+<section class="Up-Feature">
+  <div class="Up-Feature-Grid">
+    <div class="Up-Feature-Media">
+      {{ with $p.Params.hero_image }}
+        <img src="{{ . }}" alt="" class="Up-Image-Fullbleed">
+      {{ end }}
+      {{ with $p.Params.hero_caption }}
+        <div class="Up-Figure-Caption">{{ . | safeHTML }}</div>
+      {{ end }}
+    </div>
+    <div class="Up-Feature-Body">
+      <p class="Up-Kicker">Feature {{ $num }} · {{ $p.Params.kicker | default "in this issue" }}</p>
+      <h2>{{ $p.Title }}</h2>
+      {{ with $p.Params.deck }}<p class="Up-Deck">{{ . }}</p>{{ end }}
+      <div class="Up-Body">
+        {{ $p.Content }}
+      </div>
+      {{ with $p.Params.sources }}
+      <div class="Up-Caption" style="margin-top: 32px;">
+        <strong>Sources:</strong> {{ range $i, $s := . }}{{ if $i }} · {{ end }}<a href="{{ $s.url }}">{{ $s.label }}</a>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+{{ define "main" }}
+<header class="Up-Masthead-Row up-container">
+  <div>
+    <h1 class="Up-Masthead-Title">Useless Press</h1>
+    <p class="Up-Masthead-Tagline">{{ .Site.Params.subtitle }}</p>
+  </div>
+  <div class="Up-Issue-Meta">
+    Issue {{ .Params.issue }}<br>
+    {{ .Date.Format "Monday, January 2, 2006" }}<br>
+    <a href="{{ .Site.BaseURL }}" style="color: var(--accent);">← All issues</a>
+  </div>
+</header>
+
+<section class="Up-Frontmatter">
+  <div class="up-grid">
+    <div class="Up-Editorial-Note">
+      <p class="Up-Kicker">Issue {{ .Params.issue }} · {{ .Date.Format "Jan 2" }}</p>
+      <h1 style="font-size: clamp(40px, 6vw, 80px); margin-bottom: 16px;">{{ .Title }}</h1>
+      <p class="Up-Deck">{{ .Params.tagline }}</p>
+      {{ with .Content }}
+        <div style="margin-top: 32px; font-size: 19px; line-height: 1.6;">
+          {{ . }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<article class="up-container">
+  {{ .Scratch.Set "featureNum" 0 }}
+  {{ range where .Pages "Section" "features" }}
+    {{ .Scratch.Add "featureNum" 1 }}
+    {{ partial "feature.html" (dict "Page" . "Number" (printf "%02d" (.Scratch.Get "featureNum"))) }}
+  {{ end }}
+
+  {{ range where .Pages "Section" "roundups" }}
+    {{ partial "roundup.html" . }}
+  {{ end }}
+
+  {{ range where .Pages "Section" "followups" }}
+    {{ partial "followup.html" . }}
+  {{ end }}
+</article>
+{{ end }}

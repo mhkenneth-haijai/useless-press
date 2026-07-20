@@ -1,0 +1,15 @@
+<section class="Up-Roundup">
+  <div class="up-container">
+    <h2 class="Up-Roundup-Title">{{ .Title }}</h2>
+    {{ with .Params.deck }}<p style="font-size: 20px; color: var(--mid); margin-bottom: 48px;">{{ . }}</p>{{ end }}
+    <div class="Up-Roundup-Grid">
+      {{ range .Pages }}
+        <a href="{{ .Params.source_url | default "#" }}" class="Up-Roundup-Card" style="text-decoration: none; color: inherit; border-bottom: 0;">
+          <div class="Up-Roundup-Card-Kicker">{{ .Params.kicker | default "Mention" }}</div>
+          <h3 class="Up-Roundup-Card-Title">{{ .Title }}</h3>
+          {{ with .Params.one_liner }}<p class="Up-Roundup-Card-Deck">{{ . }}</p>{{ end }}
+        </a>
+      {{ end }}
+    </div>
+  </div>
+</section>

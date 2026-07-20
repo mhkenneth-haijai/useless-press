@@ -1,0 +1,65 @@
+{{ define "main" }}
+<header class="Up-Masthead-Row up-container">
+  <div>
+    <h1 class="Up-Masthead-Title">Useless Press</h1>
+    <p class="Up-Masthead-Tagline">{{ .Site.Params.subtitle }}</p>
+  </div>
+  <div class="Up-Issue-Meta">
+    Cadence<br>
+    {{ .Site.Params.cadence }}<br>
+    <span style="color: var(--accent);">{{ len (where .Site.RegularPages "Section" "issues") }} issues published</span>
+  </div>
+</header>
+
+<section class="Up-Frontmatter">
+  <div class="up-grid">
+    <div class="Up-Editorial-Note">
+      <p class="Up-Kicker">From the desk of the editor</p>
+      <p>
+        This is a hobbyist's notebook. We follow what catches our eye — cameras, cars,
+        motorcycles, films, the occasional piece of gadgetry that has no business being
+        as beautiful as it is. Research is honest about what we don't know; commentary
+        is honest about what we do. Twice a week, sometimes less, never more.
+      </p>
+      <p style="font-style: italic; color: var(--mid); font-size: 18px;">
+        — Haijai, the editor.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="up-container">
+    <h2 class="Up-Section-Label">Recent Issues</h2>
+    {{ $issues := where .Site.RegularPages "Section" "issues" }}
+    {{ if $issues }}
+    <div class="Up-Roundup-Grid">
+      {{ range first 6 $issues.ByDate.Reverse }}
+      <a href="{{ .Permalink }}" class="Up-Roundup-Card" style="text-decoration: none; color: inherit; border-bottom: 0;">
+        <div class="Up-Roundup-Card-Kicker">Issue {{ .Params.issue }}</div>
+        <h3 class="Up-Roundup-Card-Title">{{ .Title }}</h3>
+        <p class="Up-Roundup-Card-Deck">{{ .Params.tagline }}</p>
+        <p class="Up-Caption">{{ .Date.Format "January 2, 2006" }}</p>
+      </a>
+      {{ end }}
+    </div>
+    {{ else }}
+    <p style="color: var(--mid); font-style: italic; padding: 48px 0;">
+      First issue drops soon. Watch this space.
+    </p>
+    {{ end }}
+  </div>
+</section>
+
+<section class="Up-Roundup" style="margin: 80px 0 0 0;">
+  <div class="up-container">
+    <h2 class="Up-Section-Label">In the Vault</h2>
+    <p style="font-size: 18px; max-width: 64ch; color: var(--mid);">
+      Behind every issue is a research dossier — full spec sheets, reviewer notes,
+      visual references, source links. The vault is obsidian-shaped and lives
+      privately on iCloud; what makes it onto the site is what survives our
+      editorial taste.
+    </p>
+  </div>
+</section>
+{{ end }}
