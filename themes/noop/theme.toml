@@ -1,0 +1,4 @@
+name = "noop"
+description = "Empty theme — layouts come from /layouts"
+license = "MIT"
+author = "Haijai"

@@ -4,10 +4,9 @@ description = "A periodical for the curious and the uncommitted."
 languageCode = "en-us"
 defaultContentLanguage = "en"
 
-# Theme: use the Go-builtin (no theme dependency)
-theme = ""
+# Theme: Use the noop theme placeholder (real layouts come from /layouts)
+theme = "noop"
 
-# Enable unsafe HTML so our inline styles + raw TOC markup pass through
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
