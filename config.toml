@@ -30,7 +30,7 @@ theme = "noop"
   page = ["HTML"]
 
 [permalinks]
-  issues = "/:year/:month/:day/:slug/"
+  issues = "/issues/:filename/"
 
 [services]
   [services.rss]

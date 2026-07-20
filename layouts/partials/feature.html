@@ -1,5 +1,13 @@
 {{ $p := .Page }}
 {{ $num := .Number }}
+{{/* Strip "feature-NN-" prefix to extract number and clean label */}}
+{{ $cleanNum := "" }}
+{{ if $num }}
+  {{ $parts := split $num "-" }}
+  {{ if ge (len $parts) 2 }}
+    {{ $cleanNum = index $parts 1 }}
+  {{ end }}
+{{ end }}
 
 <section class="Up-Feature">
   <div class="Up-Feature-Grid">
@@ -12,7 +20,7 @@
       {{ end }}
     </div>
     <div class="Up-Feature-Body">
-      <p class="Up-Kicker">Feature {{ $num }} · {{ $p.Params.kicker | default "in this issue" }}</p>
+      <p class="Up-Kicker">Feature {{ $cleanNum }} · {{ $p.Params.kicker | default "in this issue" }}</p>
       <h2>{{ $p.Title }}</h2>
       {{ with $p.Params.deck }}<p class="Up-Deck">{{ . }}</p>{{ end }}
       <div class="Up-Body">

@@ -1,4 +1,12 @@
 {{ define "main" }}
+{{ $isIssue := eq .Section "issues" }}
+{{ if not $isIssue }}
+  {{/* Default single-page behaviour */}}
+  <article class="up-container" style="padding: 80px 0;">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+  </article>
+{{ else }}
 <header class="Up-Masthead-Row up-container">
   <div>
     <h1 class="Up-Masthead-Title">Useless Press</h1>
@@ -27,18 +35,31 @@
 </section>
 
 <article class="up-container">
-  {{ .Scratch.Set "featureNum" 0 }}
-  {{ range where .Pages "Section" "features" }}
-    {{ .Scratch.Add "featureNum" 1 }}
-    {{ partial "feature.html" (dict "Page" . "Number" (printf "%02d" (.Scratch.Get "featureNum"))) }}
+
+  {{/* Features first */}}
+  {{ $features := where .Pages ".File.BaseFileName" "like" "feature-*" }}
+  {{ if $features }}
+    {{ range $features }}
+      {{ partial "feature.html" (dict "Page" . "Number" .File.BaseFileName) }}
+    {{ end }}
   {{ end }}
 
-  {{ range where .Pages "Section" "roundups" }}
-    {{ partial "roundup.html" . }}
+  {{/* Roundups */}}
+  {{ $roundups := where .Pages ".File.BaseFileName" "like" "roundup-*" }}
+  {{ if $roundups }}
+    {{ range $roundups }}
+      {{ partial "roundup-detail.html" . }}
+    {{ end }}
   {{ end }}
 
-  {{ range where .Pages "Section" "followups" }}
-    {{ partial "followup.html" . }}
+  {{/* Followups */}}
+  {{ $followups := where .Pages ".File.BaseFileName" "like" "followup-*" }}
+  {{ if $followups }}
+    {{ range $followups }}
+      {{ partial "followup.html" . }}
+    {{ end }}
   {{ end }}
+
 </article>
+{{ end }}
 {{ end }}

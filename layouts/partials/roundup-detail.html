@@ -1,0 +1,11 @@
+<section class="Up-Roundup">
+  <div class="up-container">
+    <p class="Up-Kicker">Roundup · {{ .Params.kicker | default "In brief" }}</p>
+    <h2 class="Up-Roundup-Title">{{ .Title }}</h2>
+    {{ with .Params.deck }}<p style="font-size: 20px; color: var(--mid); margin-bottom: 32px;">{{ . }}</p>{{ end }}
+    {{ with .Params.one_liner }}<p class="Up-Body" style="font-size: 19px; max-width: 64ch;">{{ . }}</p>{{ end }}
+    <div class="Up-Body" style="max-width: 64ch;">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
