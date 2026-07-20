@@ -37,7 +37,9 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "https://mhkenneth-haijai.github.io/useless-press/"
+            --logLevel info \
+            --printPathWarnings \
+            --baseURL "https://mhkenneth-haijai.github.io/useless-press/"</new_string>
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
